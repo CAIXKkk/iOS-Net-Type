@@ -1,0 +1,10 @@
+/.private/
+/tools/
+/build/
+/dist/
+__pycache__/
+*.pyc
+*.keystore
+*.jks
+*.p12
+*.idsig

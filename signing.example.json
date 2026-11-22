@@ -1,0 +1,5 @@
+{
+  "keystore": "release.keystore",
+  "password_file": "release-password.txt",
+  "alias": "iosnettype-release"
+}
