@@ -2,6 +2,10 @@
 
 ColorOS 状态栏 LSPosed 模块：保留原有 iOS 风格的独立粗体 5G/4G 显示，与 WiFi 图标互斥，并去除移动信号和 WiFi 的数据活动小箭头。信号、WiFi 扇形、电池和充电图形沿用系统原生资源；不包含 iOS PNG 素材。
 
+## 效果展示
+
+![状态栏效果对比](docs/statusbar-demo.png)
+
 ## 使用方法
 
 ### 环境要求
@@ -68,6 +72,7 @@ python build.py
 | `version.json` | 版本名及版本号 |
 | `build.py` | 无 Python 第三方依赖的构建脚本 |
 | `dist/` | 本机生成的分发文件，不提交源码 |
+| `docs/` | README 效果展示图片 |
 | `.private/` | 本机签名材料，不提交或分发 |
 
 ## 故障处理
