@@ -13,10 +13,10 @@ import com.android.systemui.statusbar.pipeline.shared.ui.binder.ModernStatusBarV
 import com.android.systemui.statusbar.pipeline.shared.ui.view.ModernStatusBarView;
 import kotlin.jvm.functions.Function0;
 
-/** Standalone network type ("5G"/"4G") indicator living in the "mobile" slot. */
+/** Standalone network type ("5G"/"4G") indicator living in the dedicated "ios_net_type" slot. */
 public class IosNetTypeView extends ModernStatusBarView {
     private static final String TAG = "iOSNetType";
-    private static final String SLOT = "mobile";
+    private static final String SLOT = "ios_net_type";
 
     private TextView mText;
     private final IosBinding mBinding = new IosBinding();
@@ -56,6 +56,19 @@ public class IosNetTypeView extends ModernStatusBarView {
         }
         StateCenter.addView(this);
         updateFromState();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        StateCenter.addView(this);
+        updateFromState();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        StateCenter.removeView(this);
+        super.onDetachedFromWindow();
     }
 
     private boolean isSiblingWifiVisible() {

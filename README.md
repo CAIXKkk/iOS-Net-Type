@@ -1,4 +1,4 @@
-# iOS Net Type 1.1.0
+# iOS Net Type 1.1.1
 
 ColorOS 状态栏 LSPosed 模块：保留原有 iOS 风格的独立粗体 5G/4G 显示，与 WiFi 图标互斥，并去除移动信号和 WiFi 的数据活动小箭头。信号、WiFi 扇形、电池和充电图形沿用系统原生资源；不包含 iOS PNG 素材。
 
@@ -16,7 +16,7 @@ ColorOS 状态栏 LSPosed 模块：保留原有 iOS 风格的独立粗体 5G/4G 
 
 ### 安装步骤
 
-1. 安装 `dist/iOSNetType-1.1.0-release.apk`。
+1. 安装 `dist/iOSNetType-1.1.1-release.apk`。
 2. 在 LSPosed 模块列表中启用 iOS Net Type。
 3. 作用域只勾选“系统界面 / com.android.systemui”。
 4. 重启手机。Hook 在 SystemUI 进程启动时注入，必须重启后才会生效。
@@ -31,7 +31,7 @@ ColorOS 状态栏 LSPosed 模块：保留原有 iOS 风格的独立粗体 5G/4G 
 ### 验证与日志
 
 - 观察状态栏是否符合上述表现。
-- 通过 `adb logcat -s iOSNetType` 或 LSPosed 模块日志查看日志；正常加载时会出现 `loading into systemui`、`slot mobile registered` 等输出。
+- 通过 `adb logcat -s iOSNetType` 或 LSPosed 模块日志查看日志；正常加载时会出现 `loading into systemui`、`injected custom slot 'ios_net_type' after 'mobile'`、`slot ios_net_type registered` 等输出。
 
 ## 从测试版升级
 
@@ -39,7 +39,7 @@ ColorOS 状态栏 LSPosed 模块：保留原有 iOS 风格的独立粗体 5G/4G 
 
 ## 适配范围
 
-当前实现依据 ColorOS/Oplus SystemUI，已在 RMX5010 双卡设备验证核心互斥逻辑。不保证兼容 AOSP、其他厂商 ROM 或所有 ColorOS 版本。单卡/停用 SIM、不同运营商及后续 OTA 需要单独验证；找不到某个 Hook 时记录日志，不会因此阻止其他独立 Hook 安装。Android 最低安装版本为 13（API 33），这不等于所有 Android 13 及以上系统都兼容。
+当前实现依据 ColorOS/Oplus SystemUI，已在 RMX5010 上完成**双卡合并**、**双卡独立**及**单卡 / 仅启用单张 SIM 卡**（含 WiFi 开关互斥）实机验证。不保证兼容 AOSP、其他厂商 ROM 或所有 ColorOS 版本；不同运营商及后续 OTA 仍需对应验证。找不到某个 Hook 时会记录日志，不会因此阻止其他独立 Hook 安装。Android 最低安装版本为 13（API 33），这不等于所有 Android 13 及以上系统都兼容。
 
 ## 从源码构建
 
@@ -60,7 +60,7 @@ keytool -genkeypair -storetype PKCS12 -keystore .private/release.keystore \
 python build.py
 ```
 
-产物：`dist/iOSNetType-1.1.0-release.apk` 及同名 `.sha256` 校验文件。脚本自动清理 `build` 目录，完成编译、双 dex 打包、对齐、签名、验签和打包内容检查。源码 ZIP 不含任何签名材料。若需要测试调试签名包，把本人的调试密钥置于 `.private/debug.keystore`（androiddebugkey，密码 android），运行 `python build.py --debug`。
+产物：`dist/iOSNetType-1.1.1-release.apk` 及同名 `.sha256` 校验文件。脚本自动清理 `build` 目录，完成编译、双 dex 打包、对齐、签名、验签和打包内容检查。源码 ZIP 不含任何签名材料。若需要测试调试签名包，把本人的调试密钥置于 `.private/debug.keystore`（androiddebugkey，密码 android），运行 `python build.py --debug`。
 
 ## 目录
 
